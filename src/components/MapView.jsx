@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { MapContainer, TileLayer, Marker, Popup, Polyline, CircleMarker, useMap } from 'react-leaflet'
+import { useState, useEffect } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { DUBLIN_CENTER, busStops, routeLines, getLiveBuses } from '../data/mapData'
@@ -72,6 +72,14 @@ function RecenterButton({ center }) {
   )
 }
 
+function InvalidateSize() {
+  const map = useMap()
+  useEffect(() => {
+    setTimeout(() => map.invalidateSize(), 100)
+  }, [map])
+  return null
+}
+
 export default function MapView({ theme }) {
   const [activeRoutes, setActiveRoutes] = useState(new Set(routeLines.map(r => r.id)))
   const [selectedStop, setSelectedStop] = useState(null)
@@ -91,12 +99,12 @@ export default function MapView({ theme }) {
   ]
 
   return (
-    <div style={{ position: 'relative', height: 'calc(100dvh - 130px)' }}>
+    <div style={{ position: 'relative', height: 'calc(100vh - 130px)', minHeight: 400 }}>
       {/* Map */}
       <MapContainer
         center={DUBLIN_CENTER}
         zoom={13}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', minHeight: 400 }}
         zoomControl={false}
       >
         <TileLayer
@@ -137,6 +145,7 @@ export default function MapView({ theme }) {
         <AnimatedBuses />
 
         <RecenterButton center={DUBLIN_CENTER} />
+        <InvalidateSize />
       </MapContainer>
 
       {/* Legend / filter panel */}
