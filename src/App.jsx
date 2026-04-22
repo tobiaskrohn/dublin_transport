@@ -35,7 +35,7 @@ export default function App() {
   const View = views[tab]
 
   return (
-    <div style={{ fontFamily: 'Inter, system-ui, sans-serif', background: theme.bg, minHeight: '100dvh', display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto', position: 'relative' }}>
+    <div style={{ fontFamily: 'Inter, system-ui, sans-serif', background: theme.bg, height: '100dvh', display: 'flex', flexDirection: 'column', maxWidth: 480, margin: '0 auto', position: 'relative', overflow: 'hidden' }}>
       {/* Status bar */}
       <div style={{ background: theme.accent, color: '#fff', padding: '10px 20px 8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, fontWeight: 500 }}>
         <span>TFI Dublin Bus</span>

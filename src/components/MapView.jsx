@@ -99,12 +99,12 @@ export default function MapView({ theme }) {
   ]
 
   return (
-    <div style={{ position: 'relative', height: 'calc(100vh - 130px)', minHeight: 400 }}>
+    <div style={{ position: 'relative', height: window.innerHeight - 130 }}>
       {/* Map */}
       <MapContainer
         center={DUBLIN_CENTER}
         zoom={13}
-        style={{ width: '100%', height: '100%', minHeight: 400 }}
+        style={{ width: '100%', height: '100%' }}
         zoomControl={false}
       >
         <TileLayer
